@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap");
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Animasi */
+.animate-bounce-slow {
+  animation: bounce-slow 5s infinite ease-in-out;
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Batang Gulir Kustom */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #336799;
+  border-radius: 10px;
+}
+
+/* Transisi Carousel */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+.slide.active {
+  opacity: 1;
+  z-index: 10;
+}
+
+/* Visibilitas Dropdown */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: white;
+  min-width: 260px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 0.75rem;
+  z-index: 50;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Penanganan Bagian Halaman */
+.page-section {
+  display: none;
+}
+.page-section.active {
+  display: block;
+}
+
+/* Penyesuaian RTL (Right-to-Left) */
+[dir="rtl"] .text-start {
+  text-align: right;
+}
+[dir="rtl"] .text-end {
+  text-align: left;
+}
+
+/* Gaya Tombol Carousel */
+.carousel-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+.carousel-btn:hover {
+  background: #336799;
+  color: white;
+}
+
+.flag-icon {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
