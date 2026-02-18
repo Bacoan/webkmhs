@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pendaftaran SAA - Biro AAKK UIN Jakarta</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../IMG/UIN-ICON.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      
+      /* Custom scrollbar matching index.html */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #336799;
+        border-radius: 10px;
+      }
+
+      .category-card.active {
+        border-color: #336799;
+        background-color: #eff6ff; /* blue-50 */
+        transform: translateY(-4px);
+      }
+      
+      .category-card.active .icon-box {
+        background-color: #336799;
+        color: white;
+      }
+      
+      /* Loading Spinner */
+      .loader {
+        border: 3px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 3px solid #336799;
+        width: 20px;
+        height: 20px;
+        -webkit-animation: spin 1s linear infinite; /* Safari */
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-900">
+    
+    <nav class="fixed w-full z-50 py-3 md:py-4 text-white bg-[#336799] shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+          <div class="p-1.5 md:p-2 rounded-2xl bg-white shadow-lg">
+            <img
+              src="../IMG/UIN.png"
+              alt="Logo"
+              class="h-8 w-8 md:h-10 md:w-10 object-contain"
+            />
+          </div>
+            <div>
+              <div class="font-black text-xs md:text-[11px] leading-tight uppercase">STUDENT ACHIEVEMENT AWARDS</div>
+              <div class="text-[9px] md:text-[10px] font-bold tracking-wider text-blue-100 uppercase">UIN Syarif Hidayatullah Jakarta</div>
+            </div>
+        </div>
+        <a href="index.html" class="text-xs font-bold bg-white/10 hover:bg-white/20 px-6 py-3 rounded-xl transition-all flex items-center gap-2">
+            <i data-lucide="home" class="w-4 h-4"></i> Kembali
+        </a>
+      </div>
+    </nav>
+
+    <main class="pt-36 pb-20 px-4 md:px-8 max-w-5xl mx-auto">
+      
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-black text-[#336799] mb-4">Formulir Pendaftaran</h1>
+        <p class="text-slate-500 max-w-2xl mx-auto">Silakan pilih kategori penghargaan dan lengkapi data diri Anda. Pastikan membaca persyaratan di bawah ini sebelum mendaftar.</p>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 mb-12">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-blue-50 text-[#336799] rounded-lg"><i data-lucide="info" class="w-5 h-5"></i></div>
+            <h3 class="text-xl font-bold text-slate-800">Informasi & Persyaratan</h3>
+        </div>
+
+        <div class="space-y-6 text-sm text-slate-600 leading-relaxed">
+            <div class="border-b border-slate-100 pb-4">
+                <h4 class="font-bold text-[#336799] mb-3 text-base">Persyaratan Umum</h4>
+                <ul class="list-disc list-outside ml-5 space-y-1 marker:text-[#336799]">
+                    <li>Mahasiswa aktif UIN Jakarta (Semester 2-8).</li>
+                    <li>Kegiatan/kompetisi dilaksanakan pada <b>1 Oktober 2024 Hingga 30 September 2025</b>.</li>
+                    <li>Memiliki Nomor Rekening <b>ATM BRI</b> aktif a.n pendaftar.</li>
+                    <li>Wajib mengikuti media sosial Kemahasiswaan UIN Jakarta (Instagram, TikTok, YouTube, WhatsApp Channel).</li>
+                    <li>Surat Rekomendasi Fakultas/Universitas dapat diunduh di: <a href="https://drive.google.com/drive/folders/1pNfqE1S9sefXfrM6x7btY6dFY3BaK2qt?usp=sharing" target="_blank" class="text-blue-600 underline font-bold hover:text-blue-800">Link Template</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-[#336799] mb-4 text-base">Persyaratan Khusus Per Kategori</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <strong class="text-slate-800 block mb-1">Kategori 1: Hafiz Al-Qur'an</strong>
+                        <p>30 Juz, dibuktikan syahadah & tes UKM HIQMA. Wajib ada surat rekomendasi UKM HIQMA.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <strong class="text-slate-800 block mb-1">Kategori 2: Kompetisi</strong>
+                        <p>Nasional (min 10 peserta, 6 provinsi) atau Internasional (min 10 peserta, 5 negara). Upload undangan/daftar kegiatan.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <strong class="text-slate-800 block mb-1">Kategori 3: Karya Tulis</strong>
+                        <p>Buku ber-ISBN, Jurnal Sinta 3+, atau Opini Media Massa Nasional (Kompas, Republika, Tempo - min 3 artikel).</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <strong class="text-slate-800 block mb-1">Kategori 4: Pembicara</strong>
+                        <p>Tingkat Nasional/Internasional. Upload foto saat materi, dan file materi/paper.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <strong class="text-slate-800 block mb-1">Kategori 5: Aksi Sosial</strong>
+                        <p>Min 6 hari, di daerah 3T/Bencana, min 5 instansi. Wajib esai min 750 kata.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <strong class="text-slate-800 block mb-1">Kategori 6: Content Creator</strong>
+                        <p>Rutin 3 bulan terakhir. Tidak SARA/Hoaks. Upload screenshot profil & link konten views terbanyak.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div id="selectionSection" class="mb-12">
+        <h3 class="text-xl font-black text-[#336799] mb-6 pt-6 text-center">Tentukan Kategori Prestasimu</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            
+            <div onclick="selectCategory(1)" id="cat-1" class="category-card group bg-white p-5 rounded-2xl border-2 border-transparent hover:border-blue-200 shadow-sm hover:shadow-md cursor-pointer transition-all">
+                <div class="icon-box w-10 h-10 bg-blue-50 text-[#336799] rounded-lg flex items-center justify-center mb-3 transition-colors">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-slate-800">Kategori 1</h4>
+                <p class="text-xs text-slate-500 mt-1">Hafiz Al-Qur'an 30 Juz</p>
+            </div>
+
+            <div onclick="selectCategory(2)" id="cat-2" class="category-card group bg-white p-5 rounded-2xl border-2 border-transparent hover:border-blue-200 shadow-sm hover:shadow-md cursor-pointer transition-all">
+                <div class="icon-box w-10 h-10 bg-blue-50 text-[#336799] rounded-lg flex items-center justify-center mb-3 transition-colors">
+                    <i data-lucide="trophy" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-slate-800">Kategori 2</h4>
+                <p class="text-xs text-slate-500 mt-1">Kompetisi Nasional / Internasional</p>
+            </div>
+
+            <div onclick="selectCategory(3)" id="cat-3" class="category-card group bg-white p-5 rounded-2xl border-2 border-transparent hover:border-blue-200 shadow-sm hover:shadow-md cursor-pointer transition-all">
+                <div class="icon-box w-10 h-10 bg-blue-50 text-[#336799] rounded-lg flex items-center justify-center mb-3 transition-colors">
+                    <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-slate-800">Kategori 3</h4>
+                <p class="text-xs text-slate-500 mt-1">Karya Tulis & Ilmiah</p>
+            </div>
+
+            <div onclick="selectCategory(4)" id="cat-4" class="category-card group bg-white p-5 rounded-2xl border-2 border-transparent hover:border-blue-200 shadow-sm hover:shadow-md cursor-pointer transition-all">
+                <div class="icon-box w-10 h-10 bg-blue-50 text-[#336799] rounded-lg flex items-center justify-center mb-3 transition-colors">
+                    <i data-lucide="mic-2" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-slate-800">Kategori 4</h4>
+                <p class="text-xs text-slate-500 mt-1">Pembicara / Speaker</p>
+            </div>
+
+            <div onclick="selectCategory(5)" id="cat-5" class="category-card group bg-white p-5 rounded-2xl border-2 border-transparent hover:border-blue-200 shadow-sm hover:shadow-md cursor-pointer transition-all">
+                <div class="icon-box w-10 h-10 bg-blue-50 text-[#336799] rounded-lg flex items-center justify-center mb-3 transition-colors">
+                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-slate-800">Kategori 5</h4>
+                <p class="text-xs text-slate-500 mt-1">Aksi Sosial & Kemanusiaan</p>
+            </div>
+
+            <div onclick="selectCategory(6)" id="cat-6" class="category-card group bg-white p-5 rounded-2xl border-2 border-transparent hover:border-blue-200 shadow-sm hover:shadow-md cursor-pointer transition-all">
+                <div class="icon-box w-10 h-10 bg-blue-50 text-[#336799] rounded-lg flex items-center justify-center mb-3 transition-colors">
+                    <i data-lucide="video" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-slate-800">Kategori 6</h4>
+                <p class="text-xs text-slate-500 mt-1">Content Creator</p>
+            </div>
+
+        </div>
+      </div>
+
+      <div id="loading-state" class="hidden flex-col items-center justify-center py-20 duration-500 mb-12">
+        <div class="relative">
+            <div class="w-16 h-16 border-4 border-slate-200 border-t-[#336799] rounded-full animate-spin"></div>
+            <i data-lucide="file-text" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#336799] animate-pulse w-6 h-6"></i>
+        </div>
+        <p class="text-[#336799] font-bold mt-4 tracking-widest uppercase text-xs animate-pulse">Menyiapkan Formulir Pendaftaran...</p>
+        <p class="text-slate-400 text-[10px] mt-1">Mengambil data kategori...</p>
+      </div>
+
+      <div id="formContainer" class="hidden scroll-mt-20 animate-in slide-in-from-bottom-4 duration-500">
+        <h3 class="text-xl font-black text-[#336799] mb-6 text-center pt-8">Lengkapi Detail Pendaftaran</h3>
+        <div class="bg-white rounded-[2rem] shadow-xl border border-slate-100 overflow-hidden">
+            <div class="bg-[#336799] px-6 py-4 md:px-8 flex justify-between items-center">
+                <h3 class="text-white font-bold text-lg">Student Achievement Awards 2026</h3>
+                <span id="selectedCategoryLabel" class="bg-transparent text-white text-xs px-3 py-1 rounded-xl font-bold uppercase tracking-wider border border-white/50">Kategori X</span>
+            </div>
+            
+            <form id="saForm" class="p-6 md:p-8 space-y-8">
+                
+                <input type="hidden" id="inputKategori" name="kategori" value="">
+
+                <section>
+                    <h4 class="text-[#336799] font-bold border-b border-slate-100 pb-2 mb-4 flex items-center gap-2">
+                        <i data-lucide="user" class="w-4 h-4"></i> Data Diri Mahasiswa
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Nama Lengkap</label>
+                            <input type="text" name="nama" placeholder="Sesuai KTM" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">NIM</label>
+                            <input type="number" name="nim" placeholder="Nomor Induk Mahasiswa" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Fakultas</label>
+                            <select name="fakultas" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                                <option value="" disabled selected>Pilih Fakultas</option>
+                                <option>FITK</option>
+                                <option>FAH</option>
+                                <option>FSH</option>
+                                <option>FDI</option>
+                                <option>FST</option>
+                                <option>FDK</option>
+                                <option>FU</option>
+                                <option>FPsikologi</option>
+                                <option>FEB</option>
+                                <option>FK</option>
+                                <option>FIKES</option>
+                                <option>FISIP</option>
+                                <option>Sps</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Jurusan / Prodi</label>
+                            <input type="text" name="jurusan" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Semester</label>
+                            <select name="semester" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                                <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">No. Rekening BRI</label>
+                            <input type="number" name="no_rekening" placeholder="Wajib Bank BRI a.n Pendaftar" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 class="text-[#336799] font-bold border-b border-slate-100 pb-2 mb-4 flex items-center gap-2">
+                        <i data-lucide="award" class="w-4 h-4"></i> Detail Kegiatan / Prestasi
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="space-y-1 md:col-span-2">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Nama Kegiatan / Kompetisi / Judul Karya</label>
+                            <input type="text" name="nama_kegiatan" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Tingkat</label>
+                            <select name="tingkat" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                                <option>Nasional</option>
+                                <option>Internasional</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-600 uppercase tracking-wide">Penyelenggara</label>
+                            <input type="text" name="penyelenggara" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#336799] focus:ring-1 focus:ring-[#336799] transition-all bg-slate-50/50" required>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 class="text-[#336799] font-bold border-b border-slate-100 pb-2 mb-4 flex items-center gap-2">
+                        <i data-lucide="upload-cloud" class="w-4 h-4"></i> Unggah Berkas
+                    </h4>
+                    <div class="bg-blue-50/50 p-4 rounded-xl mb-4 text-xs text-slate-500 border border-blue-100">
+                        <i data-lucide="alert-circle" class="w-3 h-3 inline mr-1"></i> Format file yang diizinkan: JPG, PNG, PDF. Maksimal 2MB per file.
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-700">1. Surat Keterangan Aktif Kuliah</label>
+                            <input type="file" name="file_aktifkuliah" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#336799] hover:file:bg-blue-100 transition-all border border-slate-200 rounded-lg" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-700">2. Foto Diri (Formal/Almamater)</label>
+                            <input type="file" name="file_foto" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#336799] hover:file:bg-blue-100 transition-all border border-slate-200 rounded-lg" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-700">3. Kartu Tanda Mahasiswa (KTM)</label>
+                            <input type="file" name="file_ktm" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#336799] hover:file:bg-blue-100 transition-all border border-slate-200 rounded-lg" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-700">4. Flyer/Poster Kegiatan</label>
+                            <input type="file" name="file_flyer" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#336799] hover:file:bg-blue-100 transition-all border border-slate-200 rounded-lg" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-700">5. Piagam/Sertifikat Penghargaan</label>
+                            <input type="file" name="file_sertifikat" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#336799] hover:file:bg-blue-100 transition-all border border-slate-200 rounded-lg" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-700">6. Surat Rekomendasi Fakultas/Univ</label>
+                            <input type="file" name="file_rekomendasi" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#336799] hover:file:bg-blue-100 transition-all border border-slate-200 rounded-lg" required>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-xs font-bold text-slate-700">7. Bukti Follow Sosmed Kemahasiswaan (Jadikan 1 PDF: IG, TikTok, YouTube, WA Channel)</label>
+                            <input type="file" name="file_sosmed" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#336799] hover:file:bg-blue-100 transition-all border border-slate-200 rounded-lg" required>
+                        </div>
+
+                        <div id="dynamicFields" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 bg-yellow-50 p-4 rounded-xl border border-yellow-200 hidden">
+                            </div>
+
+                    </div>
+                </section>
+
+                <div class="pt-6 border-t border-slate-100 flex justify-end">
+                    <button type="submit" id="submitBtn" class="px-8 py-4 bg-[#336799] text-white font-bold rounded-xl shadow-lg hover:bg-[#2a5580] hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
+                        <i data-lucide="send" class="w-5 h-5 btn-icon"></i> 
+                        <span class="btn-text">Kirim Pendaftaran</span>
+                        <div class="loader hidden"></div>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="bg-[#336799] text-white py-8 text-center text-sm font-bold relative overflow-hidden">
+        <div class="relative z-10">
+            © 2026 Kemahasiswaan Biro AAKK UIN Syarif Hidayatullah Jakarta.
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let currentCategory = 0;
+
+        function selectCategory(catId) {
+            currentCategory = catId;
+            document.getElementById('inputKategori').value = "Kategori " + catId;
+            
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.getElementById(`cat-${catId}`).classList.add('active');
+
+            const labels = {
+                1: "Kategori 1 (Hafiz Al-Qur'an)",
+                2: "Kategori 2 (Kompetisi)",
+                3: "Kategori 3 (Karya Tulis)",
+                4: "Kategori 4 (Pembicara)",
+                5: "Kategori 5 (Aksi Sosial)",
+                6: "Kategori 6 (Content Creator)"
+            };
+            document.getElementById('selectedCategoryLabel').innerText = labels[catId];
+
+            updateDynamicFields(catId);
+
+            const formContainer = document.getElementById('formContainer');
+            const loader = document.getElementById('loading-state');
+            
+            formContainer.classList.add('hidden');
+            loader.classList.remove('hidden');
+            loader.classList.add('flex');
+            
+            loader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                loader.classList.remove('flex');
+                
+                formContainer.classList.remove('hidden');
+                
+                // --- BAGIAN YANG DIUBAH ---
+                // Karena sudah pakai scroll-mt-20 di HTML, 
+                // block: 'start' sekarang akan berhenti 80px (20 unit) SEBELUM elemen.
+                formContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 3000);
+        }
+
+        function updateDynamicFields(catId) {
+            const container = document.getElementById('dynamicFields');
+            container.innerHTML = ""; // Clear prev fields
+            
+            // Logic based on instructions
+            let fieldsHTML = "";
+            let hasExtra = false;
+
+            // PENTING: Saya menambahkan name="..." agar bisa terbaca di spreadsheet
+            if (catId === 1) {
+                // Kategori 1: Surat Rekomendasi UKM HIQMA
+                hasExtra = true;
+                fieldsHTML += `
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="text-xs font-bold text-slate-800 flex items-center gap-2">
+                            <i data-lucide="star" class="w-3 h-3 text-orange-500"></i> Surat Rekomendasi UKM HIQMA
+                        </label>
+                        <input type="file" name="file_tambahan1" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 transition-all border border-orange-200 rounded-lg bg-white" required>
+                    </div>
+                `;
+            } 
+            else if (catId === 4) {
+                // Kategori 4: Foto diri saat lomba + Materi/Paper
+                hasExtra = true;
+                fieldsHTML += `
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-800 flex items-center gap-2">
+                            <i data-lucide="camera" class="w-3 h-3 text-orange-500"></i> Foto Diri Saat Lomba/Kegiatan
+                        </label>
+                        <input type="file" name="file_tambahan1" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 transition-all border border-orange-200 rounded-lg bg-white" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-800 flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-3 h-3 text-orange-500"></i> File Materi / Paper
+                        </label>
+                        <input type="file" name="file_tambahan2" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 transition-all border border-orange-200 rounded-lg bg-white" required>
+                    </div>
+                `;
+            }
+            else if (catId === 6) {
+                // Kategori 6: Screenshot Akun + Link Konten
+                hasExtra = true;
+                fieldsHTML += `
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-800 flex items-center gap-2">
+                            <i data-lucide="image" class="w-3 h-3 text-orange-500"></i> Screenshot Halaman Profil Akun
+                        </label>
+                        <input type="file" name="file_tambahan1" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 transition-all border border-orange-200 rounded-lg bg-white" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-800 flex items-center gap-2">
+                            <i data-lucide="link" class="w-3 h-3 text-orange-500"></i> Link Konten (Views Terbanyak)
+                        </label>
+                        <input type="url" name="link_konten" placeholder="https://..." class="w-full px-4 py-2 rounded-xl border border-orange-200 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all bg-white" required>
+                    </div>
+                `;
+            }
+
+            // Categories 2, 3, 5 have no extra fields according to instruction
+            
+            if (hasExtra) {
+                container.innerHTML = fieldsHTML;
+                container.classList.remove('hidden');
+                lucide.createIcons(); // Re-init icons for injected HTML
+            } else {
+                container.classList.add('hidden');
+            }
+        }
+
+        // ==========================================
+        // SCRIPT HANDLING SUBMIT KE GOOGLE SHEETS
+        // ==========================================
+        
+        // PENTING: GANTI URL DI BAWAH INI DENGAN URL WEB APP ANDA DARI LANGKAH 1
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOO1fSTfmJj2H9tFn_Kj2Qa-Y6HepVOVJznbGEksoJFmncKVt6Fds0kxo6Kkasfu24/exec';
+
+        const form = document.getElementById('saForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnIcon = submitBtn.querySelector('.btn-icon');
+        const loader = submitBtn.querySelector('.loader');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validasi Sederhana (Pastikan URL Script sudah diganti)
+            if(SCRIPT_URL.includes("GANTI_DENGAN")) {
+                alert("Mohon hubungi admin: URL Backend belum diseting.");
+                return;
+            }
+
+            // UI Loading State
+            submitBtn.disabled = true;
+            btnText.innerText = "Mengirim Data...";
+            btnIcon.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            try {
+                // Kumpulkan data form
+                const formData = new FormData(form);
+                const data = {};
+                
+                // Konversi file ke Base64 (agar bisa dikirim ke Google Apps Script)
+                for (const [key, value] of formData.entries()) {
+                    if (value instanceof File && value.size > 0) {
+                        data[key] = await fileToBase64(value);
+                    } else if (value instanceof File && value.size === 0) {
+                        // Skip file kosong
+                    } else {
+                        data[key] = value;
+                    }
+                }
+
+                // Kirim via Fetch
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8"
+                    }
+                    // HAPUS baris mode: "no-cors"
+                });
+
+                const result = await response.json(); // Sekarang kita bisa baca pesan dari Google!
+                console.log("Balasan dari Google:", result);
+
+                if (result.result === "success") {
+                    alert("Pendaftaran Berhasil! Data Anda telah tersimpan.");
+                    form.reset();
+                    selectCategory(currentCategory);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    alert("Gagal menyimpan data: " + result.error);
+                    console.error("Error detail:", result.error);
+                }
+
+                // Reset UI & Form
+                alert("Pendaftaran Berhasil! Data Anda telah tersimpan.");
+                form.reset();
+                selectCategory(currentCategory); // Refresh view
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Terjadi kesalahan saat mengirim data. Silakan coba lagi.");
+            } finally {
+                // Restore UI
+                submitBtn.disabled = false;
+                btnText.innerText = "Kirim Pendaftaran";
+                btnIcon.classList.remove('hidden');
+                loader.classList.add('hidden');
+            }
+        });
+
+        // Helper untuk convert File ke Base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve({
+                    data: reader.result.split(',')[1], // Ambil bagian base64 saja
+                    name: file.name,
+                    type: file.type,
+                    mime: file.type
+                });
+                reader.onerror = error => reject(error);
+            });
+        }
+
+    </script>
+  </body>
+</html>
